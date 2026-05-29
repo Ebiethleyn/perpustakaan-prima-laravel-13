@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth; // <-- Tambahkan baris ini untuk mengusir garis merah!
@@ -40,4 +41,5 @@ Route::middleware(['role:peminjam'])->group(function () {
 // 4. Jalur URL CRUD Buku Khusus Administrator dan Petugas
 Route::middleware(['role:administrator,petugas'])->group(function () {
     Route::resource('buku', BukuController::class);
+    Route::resource('kategori', KategoriController::class);
 });
