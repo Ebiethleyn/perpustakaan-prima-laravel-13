@@ -16,20 +16,21 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // 3. Jalur URL Dashboard Mandiri yang Sudah Terkunci Aman (Menggunakan Middleware)
+// 3. Jalur URL Dashboard Mandiri yang Sudah Terkunci Aman (Menggunakan View Dashboard)
 Route::middleware(['role:administrator'])->group(function () {
     Route::get('/dashboard/admin', function () {
-        return '<h1>Dashboard KHUSUS Administrator</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+        return view('dashboard.admin');
     });
 });
 
 Route::middleware(['role:petugas'])->group(function () {
     Route::get('/dashboard/petugas', function () {
-        return '<h1>Dashboard KHUSUS Petugas</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+        return view('dashboard.petugas');
     });
 });
 
 Route::middleware(['role:peminjam'])->group(function () {
     Route::get('/dashboard/peminjam', function () {
-        return '<h1>Dashboard Peminjam (Siswa)</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+        return view('dashboard.peminjam');
     });
 });
