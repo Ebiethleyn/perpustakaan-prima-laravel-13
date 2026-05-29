@@ -52,11 +52,11 @@
             </div>
 
             <div style="margin-bottom: 25px;">
-                <label for="tahunTerbit"
+                <label for="tahun_terbit"
                     style="display: block; color: #fff; font-weight: bold; margin-bottom: 8px; font-size: 14px;">Tahun
                     Terbit</label>
-                <input type="number" id="tahunTerbit" name="tahunTerbit"
-                    value="{{ old('tahunTerbit', $buku->tahunTerbit) }}"
+                <input type="number" id="tahunTerbit" name="tahun_terbit"
+                    value="{{ old('tahun_terbit', $buku->tahunTerbit) }}"
                     style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #444; background-color: #1a1a1a; color: #fff; box-sizing: border-box; font-size: 14px;">
             </div>
 

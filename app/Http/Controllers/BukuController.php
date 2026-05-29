@@ -30,15 +30,13 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi inputan form agar tidak kosong
         $request->validate([
             'judul' => 'required',
             'penulis' => 'required',
             'penerbit' => 'required',
-            'tahunTerbit' => 'required|numeric',
+            'tahun_terbit' => 'required|numeric', // <-- Ubah ke tahun_terbit
         ]);
 
-        // Simpan ke database
         Buku::create($request->all());
 
         return redirect()->route('buku.index')->with('success', 'Buku berhasil ditambahkan!');
@@ -62,7 +60,7 @@ class BukuController extends Controller
             'judul' => 'required',
             'penulis' => 'required',
             'penerbit' => 'required',
-            'tahunTerbit' => 'required|numeric',
+            'tahun_terbit' => 'required|numeric', // <-- Ubah ke tahun_terbit
         ]);
 
         $buku = Buku::findOrFail($id);
