@@ -14,15 +14,22 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// 3. Kerangka Jalur URL Dashboard Mandiri untuk 3 Role
-Route::get('/dashboard/admin', function () {
-    return '<h1>Dashboard KHUSUS Administrator</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+
+// 3. Jalur URL Dashboard Mandiri yang Sudah Terkunci Aman (Menggunakan Middleware)
+Route::middleware(['role:administrator'])->group(function () {
+    Route::get('/dashboard/admin', function () {
+        return '<h1>Dashboard KHUSUS Administrator</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+    });
 });
 
-Route::get('/dashboard/petugas', function () {
-    return '<h1>Dashboard KHUSUS Petugas</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+Route::middleware(['role:petugas'])->group(function () {
+    Route::get('/dashboard/petugas', function () {
+        return '<h1>Dashboard KHUSUS Petugas</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+    });
 });
 
-Route::get('/dashboard/peminjam', function () {
-    return '<h1>Dashboard Peminjam (Siswa)</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+Route::middleware(['role:peminjam'])->group(function () {
+    Route::get('/dashboard/peminjam', function () {
+        return '<h1>Dashboard Peminjam (Siswa)</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+    });
 });
