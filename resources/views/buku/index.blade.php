@@ -11,13 +11,13 @@
             <td style="padding: 15px; text-align: center;">
                 <div style="display: flex; gap: 8px; justify-content: center;">
                     <!-- Tombol Edit (Sudah diperbaiki ke BukuId) -->
-                    <a href="{{ route('buku.edit', $item->BukuId) }}"
+                    <a href="{{ route('buku.edit', $item->bukuId) }}"
                         style="background-color: #ffa000; color: white; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold;">
                         Edit
                     </a>
 
                     <!-- Tombol Hapus (Sudah diperbaiki ke BukuId) -->
-                    <form action="{{ route('buku.destroy', $item->BukuId) }}" method="POST" style="margin: 0;"
+                    <form action="{{ route('buku.destroy', $item->bukuId) }}" method="POST" style="margin: 0;"
                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus buku ini?')">
                         @csrf
                         @method('DELETE')
