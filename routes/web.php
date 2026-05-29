@@ -1,7 +1,23 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
+// 1. Jalur URL Halaman Utama (Alihkan langsung ke halaman login)
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
+});
+
+// 2. Jalur URL Fitur Autentikasi (Menggunakan AuthController)
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// 3. Kerangka Jalur URL Dashboard (Sementara tanpa proteksi middleware dulu untuk tes)
+Route::get('/dashboard/internal', function () {
+    return '<h1>Dashboard Administrator & Petugas</h1><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+});
+
+Route::get('/dashboard/peminjam', function () {
+    return '<h1>Dashboard Peminjam (Siswa)</h1><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
 });
