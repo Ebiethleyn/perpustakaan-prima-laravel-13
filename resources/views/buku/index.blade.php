@@ -30,6 +30,8 @@
                     <th style="padding: 15px; font-size: 14px;">Judul Buku</th>
                     <th style="padding: 15px; font-size: 14px;">Penulis</th>
                     <th style="padding: 15px; font-size: 14px;">Penerbit</th>
+                    <!-- 1. TAMBAHKAN KEPALA KOLOM TAHUN -->
+                    <th style="padding: 15px; font-size: 14px; width: 120px; text-align: center;">Tahun Terbit</th>
                     <th style="padding: 15px; font-size: 14px; width: 180px; text-align: center;">Aksi</th>
                 </tr>
             </thead>
@@ -41,6 +43,9 @@
                         <td style="padding: 15px; font-weight: bold; color: #fff;">{{ $item->judul }}</td>
                         <td style="padding: 15px; color: #ccc;">{{ $item->penulis }}</td>
                         <td style="padding: 15px; color: #ccc;">{{ $item->penerbit }}</td>
+                        <!-- 2. TAMBAHKAN ISI KOLOM TAHUN (Menggunakan nama kolom database asli) -->
+                        <td style="padding: 15px; text-align: center; color: #ff2d20; font-weight: bold;">
+                            {{ $item->tahun_terbit }}</td>
                         <td style="padding: 15px; text-align: center;">
                             <div style="display: flex; gap: 8px; justify-content: center;">
                                 <a href="{{ route('buku.edit', $item->bukuId) }}"
@@ -63,7 +68,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" style="padding: 30px; text-align: center; color: #aaa; font-style: italic;">
+                        <!-- 3. UBAH COLSPAN MENJADI 6 KARENA TOTAL KOLOM SEKARANG ADA 6 -->
+                        <td colspan="6" style="padding: 30px; text-align: center; color: #aaa; font-style: italic;">
                             Belum ada data koleksi buku di database perpustakaan.
                         </td>
                     </tr>
