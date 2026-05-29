@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         // Memanggil UserSeeder agar ikut dieksekusi secara berurutan
         $this->call([
             UserSeeder::class,
+            BukuAndKategoriSeeder::class,
         ]);
     }
 }
