@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KategoriController;
@@ -44,4 +45,9 @@ Route::middleware(['role:administrator,petugas'])->group(function () {
     Route::resource('buku', BukuController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('peminjam', PeminjamController::class);
+
+
+    // RUTE BARU SIRKULASI TRANSAKSI:
+    Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+    Route::patch('transaksi/{id}/status', [TransaksiController::class, 'updateStatus'])->name('transaksi.status');
 });
