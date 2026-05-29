@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth; // <-- Tambahkan baris ini untuk mengusir garis merah!
 
 // 1. Jalur URL Halaman Utama (Alihkan langsung ke halaman login)
 Route::get('/', function () {
