@@ -39,7 +39,7 @@
                     <tr
                         style="border-bottom: 1px solid #3d3d3d; background-color: {{ $index % 2 === 0 ? '#2d2d2d' : '#252525' }};">
                         <td style="padding: 15px; text-align: center; color: #888;">{{ $index + 1 }}</td>
-                        <td style="padding: 15px; font-weight: bold; color: #fff;">{{ $item->name }}</td>
+                        <td style="padding: 15px; font-weight: bold; color: #fff;">{{ $item->namaLengkap }}</td>
                         <td style="padding: 15px; color: #ccc;">{{ $item->username }}</td>
                         <td style="padding: 15px; text-align: center;">
                             <span

@@ -15,7 +15,7 @@ class PeminjamController extends Controller
     {
         // Mengambil data user yang hanya memiliki role peminjam
         // Sesuaikan dengan huruf besar/kecil kolom 'role' di database kamu
-        $peminjam = User::where('role', 'peminjam')->get();
+        $peminjam = User::query()->where('role', 'peminjam')->get();
         return view('peminjam.index', compact('peminjam'));
     }
 
@@ -30,27 +30,35 @@ class PeminjamController extends Controller
     /**
      * PROSES SIMPAN: Mendaftarkan akun siswa baru ke database
      */
+    /**
+     * PROSES SIMPAN: Mendaftarkan akun siswa baru ke database
+     */
     public function store(Request $request)
     {
-        // Validasi input form
+        // Validasi input form (Ubah 'name' menjadi 'namaLengkap')
         $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:user,username', // Sesuaikan nama tabel 'user' atau 'users'
+            'namaLengkap' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:user,username',
+            'email' => 'required|email|max:255|unique:user,email',
             'password' => 'required|string|min:6',
         ], [
-            'name.required' => 'Nama lengkap siswa wajib diisi!',
+            'namaLengkap.required' => 'Nama lengkap siswa wajib diisi!',
             'username.required' => 'Username wajib diisi!',
             'username.unique' => 'Username ini sudah digunakan oleh siswa lain!',
+            'email.required' => 'Email siswa wajib diisi!',
+            'email.email' => 'Format email tidak valid!',
+            'email.unique' => 'Email ini sudah terdaftar!',
             'password.required' => 'Password wajib diisi!',
             'password.min' => 'Password minimal harus 6 karakter!',
         ]);
 
-        // Proses enkripsi password dan penguncian role menjadi 'peminjam'
+        // Proses simpan data (Ubah key array menjadi namaLengkap)
         User::create([
-            'name' => $request->name,
+            'namaLengkap' => $request->namaLengkap, // <-- Sinkron dengan database
             'username' => $request->username,
-            'password' => Hash::make($request->password), // Wajib di-hash demi keamanan
-            'role' => 'peminjam', // Dikunci otomatis agar tidak bisa nembak jadi admin
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'peminjam',
         ]);
 
         return redirect()->route('peminjam.index')->with('success', 'Akun Peminjam/Siswa baru berhasil didaftarkan!');

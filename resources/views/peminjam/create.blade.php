@@ -31,11 +31,11 @@
             @csrf
 
             <div style="margin-bottom: 20px;">
-                <label for="name"
+                <label for="namaLengkap"
                     style="display: block; color: #fff; font-weight: bold; margin-bottom: 8px; font-size: 14px;">Nama
                     Lengkap Siswa</label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}"
-                    placeholder="Contoh: Muhammad Rizky"
+                <input type="text" id="namaLengkap" name="namaLengkap" value="{{ old('namaLengkap') }}"
+                    placeholder="Contoh: Gabriel Daten Leyn"
                     style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #444; background-color: #1a1a1a; color: #fff; box-sizing: border-box; font-size: 14px;">
             </div>
 
@@ -45,6 +45,15 @@
                     Akun</label>
                 <input type="text" id="username" name="username" value="{{ old('username') }}"
                     placeholder="Contoh: rizky_perpus"
+                    style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #444; background-color: #1a1a1a; color: #fff; box-sizing: border-box; font-size: 14px;">
+            </div>
+            <!-- 1. TAMBAHKAN INPUT EMAIL DI SINI -->
+            <div style="margin-bottom: 20px;">
+                <label for="email"
+                    style="display: block; color: #fff; font-weight: bold; margin-bottom: 8px; font-size: 14px;">Email
+                    Siswa</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}"
+                    placeholder="Contoh: siswa@gmail.com"
                     style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #444; background-color: #1a1a1a; color: #fff; box-sizing: border-box; font-size: 14px;">
             </div>
 
