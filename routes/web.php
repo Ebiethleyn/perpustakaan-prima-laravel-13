@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\AuthController;
@@ -42,4 +43,5 @@ Route::middleware(['role:peminjam'])->group(function () {
 Route::middleware(['role:administrator,petugas'])->group(function () {
     Route::resource('buku', BukuController::class);
     Route::resource('kategori', KategoriController::class);
+    Route::resource('peminjam', PeminjamController::class);
 });
