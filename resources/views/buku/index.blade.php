@@ -28,9 +28,9 @@
                 <tr style="background-color: #333; border-bottom: 2px solid #ff2d20;">
                     <th style="padding: 15px; font-size: 14px; color: #ff2d20; width: 60px; text-align: center;">No</th>
                     <th style="padding: 15px; font-size: 14px;">Judul Buku</th>
+                    <th style="padding: 15px; font-size: 14px;">Kategori</th>
                     <th style="padding: 15px; font-size: 14px;">Penulis</th>
                     <th style="padding: 15px; font-size: 14px;">Penerbit</th>
-                    <!-- 1. TAMBAHKAN KEPALA KOLOM TAHUN -->
                     <th style="padding: 15px; font-size: 14px; width: 120px; text-align: center;">Tahun Terbit</th>
                     <th style="padding: 15px; font-size: 14px; width: 180px; text-align: center;">Aksi</th>
                 </tr>
@@ -41,11 +41,18 @@
                         style="border-bottom: 1px solid #3d3d3d; background-color: {{ $index % 2 === 0 ? '#2d2d2d' : '#252525' }};">
                         <td style="padding: 15px; text-align: center; color: #888;">{{ $index + 1 }}</td>
                         <td style="padding: 15px; font-weight: bold; color: #fff;">{{ $item->judul }}</td>
+                        <td style="padding: 15px; color: #ffa000; font-weight: bold;">
+                            @if ($item->kategori->isNotEmpty())
+                                {{ $item->kategori->implode('namaKategori', ', ') }}
+                            @else
+                                Tanpa Kategori
+                            @endif
+                        </td>
                         <td style="padding: 15px; color: #ccc;">{{ $item->penulis }}</td>
                         <td style="padding: 15px; color: #ccc;">{{ $item->penerbit }}</td>
-                        <!-- 2. TAMBAHKAN ISI KOLOM TAHUN (Menggunakan nama kolom database asli) -->
                         <td style="padding: 15px; text-align: center; color: #ff2d20; font-weight: bold;">
-                            {{ $item->tahun_terbit }}</td>
+                            {{ $item->tahun_terbit }}
+                        </td>
                         <td style="padding: 15px; text-align: center;">
                             <div style="display: flex; gap: 8px; justify-content: center;">
                                 <a href="{{ route('buku.edit', $item->bukuId) }}"
@@ -68,8 +75,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <!-- 3. UBAH COLSPAN MENJADI 6 KARENA TOTAL KOLOM SEKARANG ADA 6 -->
-                        <td colspan="6" style="padding: 30px; text-align: center; color: #aaa; font-style: italic;">
+                        <td colspan="7" style="padding: 30px; text-align: center; color: #aaa; font-style: italic;">
                             Belum ada data koleksi buku di database perpustakaan.
                         </td>
                     </tr>

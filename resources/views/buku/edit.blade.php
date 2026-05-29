@@ -36,6 +36,23 @@
                     style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #444; background-color: #1a1a1a; color: #fff; box-sizing: border-box; font-size: 14px;">
             </div>
 
+            {{--    --}}
+            <div style="margin-bottom: 20px;">
+                <label for="kategoriId"
+                    style="display: block; color: #fff; font-weight: bold; margin-bottom: 8px; font-size: 14px;">Kategori
+                    Buku</label>
+                <select id="kategoriId" name="kategoriId" required
+                    style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #444; background-color: #1a1a1a; color: #fff; box-sizing: border-box; font-size: 14px;">
+                    <option value="">-- Pilih Rak Kategori --</option>
+                    @foreach ($kategori as $kat)
+                        <option value="{{ $kat->kategoriId }}"
+                            {{ old('kategoriId', $buku->kategoriId) == $kat->kategoriId ? 'selected' : '' }}>
+                            {{ $kat->namaKategori }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <div style="margin-bottom: 20px;">
                 <label for="penulis"
                     style="display: block; color: #fff; font-weight: bold; margin-bottom: 8px; font-size: 14px;">Nama

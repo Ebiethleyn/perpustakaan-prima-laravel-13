@@ -36,12 +36,22 @@ class BukuController extends Controller
             'judul' => 'required',
             'penulis' => 'required',
             'penerbit' => 'required',
-            'tahun_terbit' => 'required|numeric', // <-- Ubah ke tahun_terbit
+            'tahun_terbit' => 'required|numeric',
+            'kategoriId' => 'required', // Tetap divalidasi dari form dropdown
         ]);
 
-        Buku::create($request->all());
+        // 1. Simpan data buku ke tabel buku
+        $buku = Buku::create([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
+        ]);
 
-        return redirect()->route('buku.index')->with('success', 'Buku berhasil ditambahkan!');
+        // 2. Rekatkan data kategoriId dari form masuk ke tabel jembatan kategori_buku_relasi
+        $buku->kategori()->sync($request->kategoriId);
+
+        return redirect()->route('buku.index')->with('success', 'Buku dan Kategori berhasil ditambahkan!');
     }
 
     /**
@@ -65,11 +75,22 @@ class BukuController extends Controller
             'judul' => 'required',
             'penulis' => 'required',
             'penerbit' => 'required',
-            'tahun_terbit' => 'required|numeric', // <-- Ubah ke tahun_terbit
+            'tahun_terbit' => 'required|numeric',
+            'kategoriId' => 'required',
         ]);
 
         $buku = Buku::findOrFail($id);
-        $buku->update($request->all());
+
+        // 1. Perbarui identitas buku
+        $buku->update([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
+        ]);
+
+        // 2. Sinkronisasikan ulang tabel jembatan agar datanya terupdate
+        $buku->kategori()->sync($request->kategoriId);
 
         return redirect()->route('buku.index')->with('success', 'Buku berhasil diperbarui!');
     }
