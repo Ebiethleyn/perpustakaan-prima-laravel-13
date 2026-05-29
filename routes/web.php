@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PeminjamanSiswaController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\BukuController;
@@ -50,4 +51,10 @@ Route::middleware(['role:administrator,petugas'])->group(function () {
     // RUTE BARU SIRKULASI TRANSAKSI:
     Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::patch('transaksi/{id}/status', [TransaksiController::class, 'updateStatus'])->name('transaksi.status');
+});
+
+// 5. Jalur URL Khusus Anggota / Peminjam / Siswa
+Route::middleware(['role:peminjam'])->group(function () {
+    Route::get('katalog', [PeminjamanSiswaController::class, 'index'])->name('siswa.index');
+    Route::post('katalog/pinjam', [PeminjamanSiswaController::class, 'ajukanPinjam'])->name('siswa.pinjam');
 });
