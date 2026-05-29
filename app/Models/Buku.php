@@ -16,4 +16,10 @@ class Buku extends Model
 
     // 2. Menegaskan primary key wajib 'bukuId'
     protected $primaryKey = 'bukuId';
+
+    public function kategori()
+    {
+        // Parameter: NamaModelTarget, KolomForeignIDDiTabelBuku, KolomPrimaryKeyDiTabelKategori
+        return $this->belongsTo(KategoriBuku::class, 'kategoriId', 'kategoriId');
+    }
 }

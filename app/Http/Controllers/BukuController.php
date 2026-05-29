@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\KategoriBuku;
 use App\Models\Buku;
 use Illuminate\Http\Request;
 
@@ -22,7 +22,9 @@ class BukuController extends Controller
      */
     public function create()
     {
-        return view('buku.create');
+        $kategori = KategoriBuku::all();
+        return view('buku.create', compact('kategori'));
+        // return view('buku.create');
     }
 
     /**
@@ -48,7 +50,10 @@ class BukuController extends Controller
     public function edit(string $id)
     {
         $buku = Buku::findOrFail($id);
-        return view('buku.edit', compact('buku'));
+        $kategori = KategoriBuku::all();
+
+        return view('buku.edit', compact('buku', 'kategori'));
+        // return view('buku.edit', compact('buku'));
     }
 
     /**
