@@ -13,11 +13,15 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// 3. Kerangka Jalur URL Dashboard (Sementara tanpa proteksi middleware dulu untuk tes)
-Route::get('/dashboard/internal', function () {
-    return '<h1>Dashboard Administrator & Petugas</h1><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+// 3. Kerangka Jalur URL Dashboard Mandiri untuk 3 Role
+Route::get('/dashboard/admin', function () {
+    return '<h1>Dashboard KHUSUS Administrator</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+});
+
+Route::get('/dashboard/petugas', function () {
+    return '<h1>Dashboard KHUSUS Petugas</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
 });
 
 Route::get('/dashboard/peminjam', function () {
-    return '<h1>Dashboard Peminjam (Siswa)</h1><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
+    return '<h1>Dashboard Peminjam (Siswa)</h1><p>Selamat datang, ' . Auth::user()->namaLengkap . '</p><form action="' . route('logout') . '" method="POST">' . csrf_field() . '<button type="submit">Logout</button></form>';
 });

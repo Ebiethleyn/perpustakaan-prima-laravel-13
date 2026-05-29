@@ -28,16 +28,18 @@ class AuthController extends Controller
 
         // 2. Proses autentikasi menggunakan Auth guard bawaan Laravel
         if (Auth::attempt($credentials)) {
-            // Regenerasi session agar aman dari serangan Session Fixation
             $request->session()->regenerate();
 
-            // Cek role user untuk pengalihan halaman dashboard yang sesuai
             $user = Auth::user();
-            if (in_array($user->role, ['administrator', 'petugas'])) {
-                return redirect()->intended('/dashboard/internal');
-            }
 
-            return redirect()->intended('/dashboard/peminjam');
+            // Memisah pengalihan halaman secara presisi berdasarkan 3 role asli database
+            if ($user->role === 'administrator') {
+                return redirect()->intended('/dashboard/admin');
+            } elseif ($user->role === 'petugas') {
+                return redirect()->intended('/dashboard/petugas');
+            } else {
+                return redirect()->intended('/dashboard/peminjam');
+            }
         }
 
         // 3. Jika login gagal, kembalikan ke form dengan pesan error
