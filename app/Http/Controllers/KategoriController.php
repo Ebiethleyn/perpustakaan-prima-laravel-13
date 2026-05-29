@@ -31,9 +31,8 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input agar nama kategori tidak boleh kosong
         $request->validate([
-            'namaKategori' => 'required|unique:kategori_buku,namaKategori',
+            'namaKategori' => 'required|unique:kategoribuku,namaKategori', // <-- Pastikan kategoribuku
         ], [
             'namaKategori.required' => 'Nama kategori wajib diisi!',
             'namaKategori.unique' => 'Nama kategori ini sudah ada di database!',
@@ -61,7 +60,7 @@ class KategoriController extends Controller
         $kategori = KategoriBuku::findOrFail($id);
 
         $request->validate([
-            'namaKategori' => 'required|unique:kategori_buku,namaKategori,' . $kategori->kategoriId . ',kategoriId',
+            'namaKategori' => 'required|unique:kategoribuku,namaKategori,' . $kategori->kategoriId . ',kategoriId', // <-- Pastikan kategoribuku
         ], [
             'namaKategori.required' => 'Nama kategori wajib diisi!',
             'namaKategori.unique' => 'Nama kategori ini sudah ada!',
