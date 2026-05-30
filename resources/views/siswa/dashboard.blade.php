@@ -45,14 +45,13 @@
                             @csrf
                             <input type="hidden" name="bukuId" value="{{ $buku->bukuId }}">
                             <button type="submit"
-                                style="width: 100%; background-color: #ff2d20; color: white; border: none; padding: 8px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 13px; transition: 0.2s;">
+                                style="width: 100%; background-color: #ff2d20; color: white; border: none; padding: 8px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 13px;">
                                 Pinjam Buku
                             </button>
                         </form>
                     </div>
                 @empty
-                    <div style="color: #aaa; font-style: italic; grid-column: span 2; padding: 20px 0;">Belum ada koleksi
-                        buku tersedia.</div>
+                    <div style="color: #aaa; font-style: italic; padding: 20px 0;">Belum ada koleksi buku tersedia.</div>
                 @endforelse
             </div>
         </div>
