@@ -50,4 +50,5 @@ Route::middleware(['role:administrator,petugas'])->group(function () {
     // RUTE BARU SIRKULASI TRANSAKSI:
     Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::patch('transaksi/{id}/status', [TransaksiController::class, 'updateStatus'])->name('transaksi.status');
+    Route::get('laporan/cetak', [TransaksiController::class, 'cetakLaporan'])->name('laporan.cetak');
 });

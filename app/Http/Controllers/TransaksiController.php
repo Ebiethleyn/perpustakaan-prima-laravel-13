@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
@@ -38,5 +39,19 @@ class TransaksiController extends Controller
         $peminjaman->update($updateData);
 
         return redirect()->back()->with('success', 'Status transaksi berhasil diperbarui!');
+    }
+    public function cetakLaporan()
+    {
+        // Ambil semua data transaksi sirkulasi beserta data user dan bukunya
+        $transaksi = Peminjaman::with(['user', 'buku'])->latest()->get();
+
+        // Load view khusus cetak laporan dan lempar datanya
+        $pdf = Pdf::loadView('transaksi.laporan_pdf', compact('transaksi'));
+
+        // Atur ukuran kertas menjadi A4 dengan orientasi Lanskap (tidur) agar tabel tidak sesak
+        $pdf->setPaper('a4', 'landscape');
+
+        // Kembalikan perintah unduh otomatis dengan nama file rapi
+        return $pdf->download('Laporan_Sirkulasi_Perpus_' . date('Y-m-d') . '.pdf');
     }
 }

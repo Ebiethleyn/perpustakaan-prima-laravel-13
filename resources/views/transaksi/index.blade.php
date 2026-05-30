@@ -20,6 +20,17 @@
 
     <!-- Container Utama dengan Overflow-X Auto agar kolom kanan tidak terpotong -->
     <div style="background-color: #2d2d2d; border-radius: 8px; border: 1px solid #333; width: 100%; overflow-x: auto;">
+        <div style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h1 style="margin: 0; color: #ff2d20; font-family: Arial, sans-serif;">Log Transaksi Sirkulasi</h1>
+                <p style="color: #888; margin: 5px 0 0 0; font-size: 14px;">Pantau riwayat peminjaman dan lakukan verifikasi
+                    pengembalian buku siswa.</p>
+            </div>
+            <a href="{{ route('laporan.cetak') }}"
+                style="background-color: #ffa000; color: #000; text-decoration: none; padding: 10px 18px; border-radius: 4px; font-weight: bold; font-family: Arial, sans-serif; font-size: 13px; transition: 0.2s;">
+                🖨️ Cetak Laporan PDF
+            </a>
+        </div>
         <table
             style="width: 100%; border-collapse: collapse; text-align: left; font-family: Arial, sans-serif; color: #fff; min-width: 900px;">
             <thead>
