@@ -21,7 +21,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // 3. Jalur URL Dashboard Mandiri yang Sudah Terkunci Aman (Menggunakan Middleware)
-// 3. Jalur URL Dashboard Mandiri yang Sudah Terkunci Aman (Menggunakan View Dashboard)
 Route::middleware(['role:administrator'])->group(function () {
     Route::get('/dashboard/admin', function () {
         return view('dashboard.admin');
@@ -34,10 +33,10 @@ Route::middleware(['role:petugas'])->group(function () {
     });
 });
 
+// KITA MODIFIKASI BAGIAN PEMINJAM DI SINI AGAR MEMANGGIL CONTROLLER:
 Route::middleware(['role:peminjam'])->group(function () {
-    Route::get('/dashboard/peminjam', function () {
-        return view('dashboard.peminjam');
-    });
+    Route::get('/dashboard/peminjam', [PeminjamanSiswaController::class, 'index'])->name('peminjam.dashboard');
+    Route::post('katalog/pinjam', [PeminjamanSiswaController::class, 'ajukanPinjam'])->name('siswa.pinjam');
 });
 
 
@@ -51,10 +50,4 @@ Route::middleware(['role:administrator,petugas'])->group(function () {
     // RUTE BARU SIRKULASI TRANSAKSI:
     Route::get('transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::patch('transaksi/{id}/status', [TransaksiController::class, 'updateStatus'])->name('transaksi.status');
-});
-
-// 5. Jalur URL Khusus Anggota / Peminjam / Siswa
-Route::middleware(['role:peminjam'])->group(function () {
-    Route::get('katalog', [PeminjamanSiswaController::class, 'index'])->name('siswa.index');
-    Route::post('katalog/pinjam', [PeminjamanSiswaController::class, 'ajukanPinjam'])->name('siswa.pinjam');
 });

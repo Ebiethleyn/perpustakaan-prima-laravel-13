@@ -18,13 +18,19 @@ class PeminjamanSiswaController extends Controller
         $daftarBuku = Buku::with('kategori')->get();
 
         // 2. Ambil riwayat peminjaman khusus untuk siswa yang sedang login saat ini
-        // Menggunakan UserId (U & I kapital) sesuai database asli kamu
+        $userId = Auth::user()->UserId ?? Auth::id();
         $riwayatPinjam = Peminjaman::with('buku')
-            ->where('UserId', Auth::user()->UserId ?? Auth::id())
+            ->where('UserId', $userId)
             ->latest()
             ->get();
 
-        return view('siswa.dashboard', compact('daftarBuku', 'riwayatPinjam'));
+        // 3. Hitung jumlah buku yang statusnya 'Dipinjam' oleh siswa ini
+        $bukuDipinjamCount = Peminjaman::where('UserId', $userId)
+            ->where('status', 'Dipinjam')
+            ->count();
+
+        // SINKRONISASI VIEW: Diarahkan ke folder dashboard file peminjam
+        return view('dashboard.peminjam', compact('daftarBuku', 'riwayatPinjam', 'bukuDipinjamCount'));
     }
 
     /**
