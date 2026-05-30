@@ -13,7 +13,7 @@ Aplikasi Manajemen Perpustakaan Digital berbasis web yang dirancang khusus untuk
 ## 🤵 Developer Profile
 
 - **Nama Lengkap:** Gabriel Daten Leyn
-- **Asal Instansi:** Universitas Indraprasta PGRI (UNINDRA) / Mitra Kerja SMK Prestasi Prima
+- **Asal Instansi:** Universitas Indraprasta PGRI (UNINDRA) 
 - **Tahun Pengembangan:** 2026
 
 ---
