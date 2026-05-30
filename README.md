@@ -29,7 +29,7 @@ Aplikasi ini dibangun dan berjalan optimal di atas ekosistem modern dengan spesi
 * **Operating System:** Windows (via Laragon / MSYS Terminal)
 * **PHP Version:** `8.4.21 (cli)` (Visual C++ 2022 x64)
 * **Composer Version:** `2.9.7 (2026-04-14)`
-* **Framework:** Laravel 11/12/13 Ecosystem
+* **Framework:** Laravel 13 Ecosystem
 * **Database:** SQLite / MySQL Engine
 
 ---
@@ -38,6 +38,7 @@ Aplikasi ini dibangun dan berjalan optimal di atas ekosistem modern dengan spesi
 
 Jika aplikasi ini ingin dijalankan ulang di komputer penguji atau lingkungan server baru, silakan ikuti instruksi terminal di bawah ini:
 
-### 1. Masuk ke Direktori Proyek Laragon
+### 1. Kloning Repositori & Masuk ke Direktori Proyek
 ```bash
-cd /c/laragon/www/perpus-prestasi-prima-gabriel
+git clone [https://github.com/Ebiethleyn/perpustakaan-prima-laravel-13.git](https://github.com/Ebiethleyn/perpustakaan-prima-laravel-13.git)
+cd perpustakaan-prima-laravel-13
