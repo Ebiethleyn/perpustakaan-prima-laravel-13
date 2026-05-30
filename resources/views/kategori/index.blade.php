@@ -3,16 +3,27 @@
 @section('title', 'Daftar Kategori Buku')
 
 @section('content')
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+    <!-- Header Halaman -->
+    <div
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; font-family: Arial, sans-serif;">
         <div>
-            <h1 style="margin: 0; color: #ff2d20; font-family: Arial, sans-serif;">Daftar Kategori Buku</h1>
+            <h1 style="margin: 0; color: #ff2d20; font-weight: bold;">Daftar Kategori Buku</h1>
             <p style="color: #888; margin: 5px 0 0 0; font-size: 14px;">Kelola pengelompokan rak kategori buku perpustakaan.
             </p>
         </div>
-        <a href="{{ route('kategori.create') }}"
-            style="background-color: #ff2d20; color: white; text-decoration: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; font-family: Arial, sans-serif; font-size: 14px; transition: 0.2s;">
-            + Tambah Kategori Baru
-        </a>
+
+        <!-- Kontainer Tombol Aksi Sebelah Kanan -->
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <a href="{{ Auth::user()->role === 'administrator' ? url('/dashboard/admin') : url('/dashboard/petugas') }}"
+                style="text-decoration: none; background-color: #333; color: #fff; padding: 10px 16px; border-radius: 4px; font-weight: bold; font-size: 14px; border: 1px solid #444; transition: 0.2s;">
+                ⬅️ Dashboard Utama
+            </a>
+
+            <a href="{{ route('kategori.create') }}"
+                style="background-color: #ff2d20; color: white; text-decoration: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; font-size: 14px; transition: 0.2s;">
+                + Tambah Kategori Baru
+            </a>
+        </div>
     </div>
 
     @if (session('success'))
