@@ -10,7 +10,8 @@
                 <h1 style="margin: 0; color: #ff2d20; font-size: 24px; font-weight: bold;">Halo, Administrator!</h1>
                 <p style="color: #aaa; margin: 10px 0 0 0; font-size: 14px;">Selamat datang kembali,
                     <strong>{{ Auth::user()->namaLengkap }}</strong>. Ini adalah pusat kendali utama Perpustakaan Digital
-                    SMK Prestasi Prima.</p>
+                    SMK Prestasi Prima.
+                </p>
             </div>
         </div>
 
@@ -73,7 +74,13 @@
                     <div style="color: #fff; font-weight: bold; font-size: 14px;">Kategori Buku</div>
                     <div style="color: #666; font-size: 11px; margin-top: 3px;">Atur relasi kategori buku</div>
                 </a>
-
+                <!-- Tombol 5: Cetak Laporan PDF (Tambahan Baru) -->
+                <a href="{{ route('laporan.cetak') }}"
+                    style="text-decoration: none; background-color: #2d2d2d; border: 1px solid #ffa000; padding: 15px; border-radius: 6px; display: block; text-align: center;">
+                    <div style="font-size: 24px; margin-bottom: 5px;">🖨️</div>
+                    <div style="color: #fff; font-weight: bold; font-size: 14px;">Cetak PDF</div>
+                    <div style="color: #666; font-size: 11px; margin-top: 3px;">Unduh rekap sirkulasi</div>
+                </a>
             </div>
         </div>
 
