@@ -41,6 +41,7 @@
 
         <main class="content-container">
             @yield('content')
+            <a href="{{ route('transaksi.index') }}">Log Transaksi</a>
         </main>
 
         @include('layouts.footer')

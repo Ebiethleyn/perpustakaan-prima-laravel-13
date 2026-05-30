@@ -3,12 +3,14 @@
 @section('title', 'Katalog Perpustakaan Siswa')
 
 @section('content')
+    <!-- Header Halaman -->
     <div style="margin-bottom: 25px;">
         <h1 style="margin: 0; color: #ff2d20; font-family: Arial, sans-serif;">Katalog Buku Digital</h1>
         <p style="color: #888; margin: 5px 0 0 0; font-size: 14px;">Selamat datang! Silakan pilih koleksi buku yang ingin
             Anda baca dan pinjam.</p>
     </div>
 
+    <!-- Notifikasi Sukses Pinjam -->
     @if (session('success'))
         <div
             style="background-color: #1b5e20; color: #c8e6c9; padding: 15px; border-radius: 4px; margin-bottom: 25px; font-family: Arial, sans-serif; font-size: 14px; border-left: 5px solid #4caf50;">
@@ -18,6 +20,7 @@
 
     <div style="display: flex; gap: 25px; flex-wrap: wrap; font-family: Arial, sans-serif;">
 
+        <!-- BAGIAN KIRI: KATALOG BUKU YANG TERSEDIA -->
         <div style="flex: 2; min-width: 500px;">
             <h3 style="color: #fff; margin-top: 0; border-bottom: 2px solid #ff2d20; padding-bottom: 8px;">📚 Koleksi Buku
                 Tersedia</h3>
@@ -37,6 +40,7 @@
                                 ({{ $buku->tahun_terbit }})</p>
                         </div>
 
+                        <!-- Form Aksi Pinjam -->
                         <form action="{{ route('siswa.pinjam') }}" method="POST" style="margin: 0;">
                             @csrf
                             <input type="hidden" name="bukuId" value="{{ $buku->bukuId }}">
@@ -47,12 +51,13 @@
                         </form>
                     </div>
                 @empty
-                    <div style="color: #aaa; font-style: italic; grid-column: span 2;">Belum ada koleksi buku tersedia.
-                    </div>
+                    <div style="color: #aaa; font-style: italic; grid-column: span 2; padding: 20px 0;">Belum ada koleksi
+                        buku tersedia.</div>
                 @endforelse
             </div>
         </div>
 
+        <!-- BAGIAN KANAN: RIWAYAT PINJAMAN SISWA YANG LOGIN -->
         <div style="flex: 1; min-width: 300px;">
             <h3 style="color: #fff; margin-top: 0; border-bottom: 2px solid #ffa000; padding-bottom: 8px;">⏱ Rak Pinjaman
                 Anda</h3>
@@ -75,7 +80,7 @@
                         @endif
                     </div>
                 @empty
-                    <p style="color: #aaa; margin: 0; font-style: italic; text-align: center; padding: 20px 0;"> Anda belum
+                    <p style="color: #aaa; margin: 0; font-style: italic; text-align: center; padding: 20px 0;">Anda belum
                         meminjam buku apa pun.</p>
                 @endforelse
             </div>
