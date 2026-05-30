@@ -30,6 +30,7 @@
             flex: 1;
             padding: 30px;
             box-sizing: border-box;
+            width: 100%;
         }
     </style>
 </head>
@@ -41,7 +42,6 @@
 
         <main class="content-container">
             @yield('content')
-            <a href="{{ route('transaksi.index') }}">Log Transaksi</a>
         </main>
 
         @include('layouts.footer')
